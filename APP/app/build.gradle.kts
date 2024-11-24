@@ -53,6 +53,25 @@ android {
 
 dependencies {
 
+    val composeBom = platform("androidx.compose:compose-bom:2024.10.01")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    // Choose one of the following:
+    // Material Design 3
+    implementation(libs.material3)
+    // or Material Design 2
+    implementation(libs.androidx.material)
+    // or skip Material Design and build directly on top of foundational components
+    implementation(libs.androidx.foundation)
+    // or only import the main APIs for the underlying toolkit systems,
+    // such as input and measurement/layout
+    implementation(libs.ui)
+
+    // Android Studio Preview support
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
