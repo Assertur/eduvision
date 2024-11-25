@@ -1,22 +1,28 @@
 package home
 
+//noinspection UsingMaterialAndMaterial3Libraries
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.LinearProgressIndicator
-//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Text
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -32,7 +38,7 @@ import ui.colors.PrimaryColor
 import ui.colors.SecondaryColor
 
 @Composable
-fun MainContentConnected(navController : NavHostController) {
+fun MainContentConnected(navController: NavHostController) {
     // Utilisation d'un état de scroll pour la troisième partie
     val scrollState = rememberScrollState()
 
@@ -44,7 +50,7 @@ fun MainContentConnected(navController : NavHostController) {
         modifier = Modifier
             .fillMaxSize()
             .background(BackgroundColor)
-            .padding( top = 30.dp, bottom = 100.dp)
+            .padding(top = 30.dp, bottom = 100.dp)
     ) {
         Row(
             modifier = Modifier
@@ -59,12 +65,22 @@ fun MainContentConnected(navController : NavHostController) {
                     .padding(end = 8.dp) // Espace entre les colonnes
             ) {
                 // Partie 1
-                PartWithImageAndText(imageResId = imgCrayon, text = "Dernier exercice\n(Calcul pommes)",125, navController)
+                PartWithImageAndText(
+                    imageResId = imgCrayon,
+                    text = "Dernier exercice\n(Calcul pommes)",
+                    125,
+                    navController
+                )
 
                 Spacer(modifier = Modifier.height(8.dp)) // Espacement entre Partie 1 et Partie 2
 
                 // Partie 2
-                PartWithImageAndText(imageResId = img_chap, text = "Cours associé",125, navController)
+                PartWithImageAndText(
+                    imageResId = img_chap,
+                    text = "Cours associé",
+                    125,
+                    navController
+                )
             }
 
             // Partie 3
@@ -85,7 +101,7 @@ fun MainContentConnected(navController : NavHostController) {
 
                 // Afficher chaque élément
                 items.forEach { item ->
-                    ProgressItemRow(item,3)
+                    ProgressItemRow(item, 3)
                     Spacer(modifier = Modifier.height(8.dp)) // Espacement entre chaque élément
                 }
 
@@ -94,7 +110,8 @@ fun MainContentConnected(navController : NavHostController) {
                     colors = ButtonDefaults.buttonColors(
                         containerColor = PrimaryColor // Couleur du fond du bouton
                     ),
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
                         .padding(vertical = 10.dp)
                 ) {
                     Text("Voir plus", fontSize = 18.sp)
@@ -103,7 +120,7 @@ fun MainContentConnected(navController : NavHostController) {
         }
 
         // Partie 4 - Liste d'éléments similaire à la partie 3
-       // Spacer(modifier = Modifier.height(16.dp)) // Espacement entre les sections verticales
+        // Spacer(modifier = Modifier.height(16.dp)) // Espacement entre les sections verticales
 
         // Liste d'éléments pour la quatrième partie
         Column(
@@ -127,7 +144,7 @@ fun MainContentConnected(navController : NavHostController) {
 
             // Afficher chaque élément
             items.forEach { item ->
-                ProgressItemRow(item,4)
+                ProgressItemRow(item, 4)
                 Spacer(modifier = Modifier.height(8.dp)) // Espacement entre chaque élément
             }
 
@@ -136,7 +153,8 @@ fun MainContentConnected(navController : NavHostController) {
                 colors = ButtonDefaults.buttonColors(
                     containerColor = PrimaryColor // Couleur du fond du bouton
                 ),
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
                     .padding(vertical = 10.dp)
             ) {
                 Text("Voir plus", fontSize = 18.sp)
@@ -203,7 +221,12 @@ fun ProgressItemRow(item: ProgressItem, number: Int) {
 }
 
 @Composable
-fun PartWithImageAndText(imageResId: Int, text: String, taille: Int, navController: NavHostController) {
+fun PartWithImageAndText(
+    imageResId: Int,
+    text: String,
+    taille: Int,
+    navController: NavHostController
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -212,8 +235,7 @@ fun PartWithImageAndText(imageResId: Int, text: String, taille: Int, navControll
             .background(ItemColor)
             .clickable {
                 navController.navigate("exercice_exemple")
-            }
-        ,
+            },
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {

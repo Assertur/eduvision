@@ -5,8 +5,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import app.ExerciceExemple
-import app.MainActivity
-import home.MainContentConnected
 import home.MainScreen
 
 const val HOME_ROUTE = "home"
