@@ -2,6 +2,7 @@ package home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.app.R
 import ui.colors.BackgroundColor
 import ui.colors.ItemColor
@@ -30,7 +32,7 @@ import ui.colors.PrimaryColor
 import ui.colors.SecondaryColor
 
 @Composable
-fun MainContentConnected() {
+fun MainContentConnected(navController : NavHostController) {
     // Utilisation d'un état de scroll pour la troisième partie
     val scrollState = rememberScrollState()
 
@@ -57,12 +59,12 @@ fun MainContentConnected() {
                     .padding(end = 8.dp) // Espace entre les colonnes
             ) {
                 // Partie 1
-                PartWithImageAndText(imageResId = imgCrayon, text = "Dernier exercice\n(Calcul pommes)",125)
+                PartWithImageAndText(imageResId = imgCrayon, text = "Dernier exercice\n(Calcul pommes)",125, navController)
 
                 Spacer(modifier = Modifier.height(8.dp)) // Espacement entre Partie 1 et Partie 2
 
                 // Partie 2
-                PartWithImageAndText(imageResId = img_chap, text = "Cours associé",125)
+                PartWithImageAndText(imageResId = img_chap, text = "Cours associé",125, navController)
             }
 
             // Partie 3
@@ -201,13 +203,16 @@ fun ProgressItemRow(item: ProgressItem, number: Int) {
 }
 
 @Composable
-fun PartWithImageAndText(imageResId: Int, text: String, taille: Int) {
+fun PartWithImageAndText(imageResId: Int, text: String, taille: Int, navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
             .clip(RoundedCornerShape(25.dp))
             .background(ItemColor)
+            .clickable {
+                navController.navigate("exercice_exemple")
+            }
         ,
         horizontalAlignment = Alignment.CenterHorizontally
 

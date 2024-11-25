@@ -1,6 +1,7 @@
 package home
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import common.bottomAppBar.menuDeroulant.MenuDeroulant
 import common.bottomAppBar.MyBottomAppBar
 import common.bottomAppBar.menuDeroulant.MenuDeroulantViewModel
@@ -23,7 +26,7 @@ import ui.colors.SecondaryColor
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavHostController) {
 
     var menuDeroulantViewModel = MenuDeroulantViewModel()
 
@@ -31,7 +34,7 @@ fun MainScreen() {
         bottomBar = { MyBottomAppBar(menuDeroulantViewModel) },
         modifier = Modifier.background(SecondaryColor)
     )  { // Contenu principal de l'écran
-        MainContentConnected()
+        MainContentConnected(navController = navController)
         MenuDeroulant(
             menuDeroulantViewModel,
             onDismissRequest = { menuDeroulantViewModel.closeMenu() }
@@ -40,7 +43,8 @@ fun MainScreen() {
     }
 }
 
+/* Désolé plus de preview ça marche pas avec la nav
 @Preview(showBackground = true)
 @Composable fun DefaultPreview(){
     MainScreen()
-}
+}*/
