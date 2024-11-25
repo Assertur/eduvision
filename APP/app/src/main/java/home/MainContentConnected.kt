@@ -1,8 +1,19 @@
 package home
 
+//noinspection UsingMaterialAndMaterial3Libraries
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -31,7 +42,7 @@ import common.ui.colors.PrimaryColor
 import common.ui.colors.SecondaryColor
 
 @Composable
-fun MainContentConnected() {
+fun MainContentConnected(navController: NavHostController) {
     // Utilisation d'un état de scroll pour la troisième partie
     val scrollState = rememberScrollState()
 
@@ -43,7 +54,7 @@ fun MainContentConnected() {
         modifier = Modifier
             .fillMaxSize()
             .background(BackgroundColor)
-            .padding( top = 30.dp, bottom = 100.dp)
+            .padding(top = 10.dp)
     ) {
         Row(
             modifier = Modifier
@@ -58,12 +69,24 @@ fun MainContentConnected() {
                     .padding(end = 8.dp) // Espace entre les colonnes
             ) {
                 // Partie 1
-                PartWithImageAndText(imageResId = imgCrayon, text = "Dernier exercice\n(Calcul oiseaux)",125)
+                PartWithImageAndText(
+                    imageResId = imgCrayon,
+                    text = "Dernier exercice\n(Calcul oiseaux)",
+                    115,
+                    navController,
+                    "exercice_exemple"
+                )
 
                 Spacer(modifier = Modifier.height(8.dp)) // Espacement entre Partie 1 et Partie 2
 
                 // Partie 2
-                PartWithImageAndText(imageResId = imgChap, text = "Cours associé",125)
+                PartWithImageAndText(
+                    imageResId = imgChap,
+                    text = "Cours associé",
+                    115,
+                    navController,
+                    "exercice_exemple"
+                )
             }
 
             // Partie 3
@@ -84,7 +107,7 @@ fun MainContentConnected() {
 
                 // Afficher chaque élément
                 items.forEach { item ->
-                    ProgressItemRow(item,3)
+                    ProgressItemRow(item, 3)
                     Spacer(modifier = Modifier.height(8.dp)) // Espacement entre chaque élément
                 }
 
@@ -93,7 +116,8 @@ fun MainContentConnected() {
                     colors = ButtonDefaults.buttonColors(
                         containerColor = PrimaryColor // Couleur du fond du bouton
                     ),
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
                         .padding(vertical = 10.dp)
                 ) {
                     Text("Voir plus", fontSize = 18.sp)
@@ -102,7 +126,7 @@ fun MainContentConnected() {
         }
 
         // Partie 4 - Liste d'éléments similaire à la partie 3
-       // Spacer(modifier = Modifier.height(16.dp)) // Espacement entre les sections verticales
+        // Spacer(modifier = Modifier.height(16.dp)) // Espacement entre les sections verticales
 
         // Liste d'éléments pour la quatrième partie
         Column(
@@ -126,7 +150,7 @@ fun MainContentConnected() {
 
             // Afficher chaque élément
             items.forEach { item ->
-                ProgressItemRow(item,4)
+                ProgressItemRow(item, 4)
                 Spacer(modifier = Modifier.height(8.dp)) // Espacement entre chaque élément
             }
 
@@ -135,7 +159,8 @@ fun MainContentConnected() {
                 colors = ButtonDefaults.buttonColors(
                     containerColor = PrimaryColor // Couleur du fond du bouton
                 ),
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
                     .padding(vertical = 10.dp)
             ) {
                 Text("Voir plus", fontSize = 18.sp)
@@ -202,14 +227,22 @@ fun ProgressItemRow(item: ProgressItem, number: Int) {
 }
 
 @Composable
-fun PartWithImageAndText(imageResId: Int, text: String, taille: Int) {
+fun PartWithImageAndText(
+    imageResId: Int,
+    text: String,
+    taille: Int,
+    navController: NavHostController,
+    route: String
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
             .clip(RoundedCornerShape(25.dp))
             .background(ItemColor)
-        ,
+            .clickable {
+                navController.navigate(route)
+            },
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
@@ -219,14 +252,14 @@ fun PartWithImageAndText(imageResId: Int, text: String, taille: Int) {
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(taille.dp)
-                .padding(10.dp)
+                .padding(start = 10.dp, end = 10.dp, top = 10.dp)
                 .clip(RoundedCornerShape(10.dp))
                 .background(SecondaryColor)
         )
         Text(
             text = text,
             fontSize = 16.sp,
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(vertical = 10.dp),
             textAlign = TextAlign.Center
         )
     }
