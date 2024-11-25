@@ -1,4 +1,4 @@
-package ui.colors
+package common.ui.colors
 
 import androidx.compose.ui.graphics.Color
 

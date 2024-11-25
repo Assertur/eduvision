@@ -24,10 +24,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.app.R
-import ui.colors.BackgroundColor
-import ui.colors.ItemColor
-import ui.colors.PrimaryColor
-import ui.colors.SecondaryColor
+import common.connexion.ConnexionViewModel
+import common.ui.colors.BackgroundColor
+import common.ui.colors.ItemColor
+import common.ui.colors.PrimaryColor
+import common.ui.colors.SecondaryColor
 
 @Composable
 fun MainContentConnected() {
@@ -36,7 +37,7 @@ fun MainContentConnected() {
 
     val imgCrayon = R.drawable.crayon
     val imgTrophe = R.drawable.trophe
-    val img_chap = R.drawable.chapitre
+    val imgChap = R.drawable.chapitre
 
     Column(
         modifier = Modifier
@@ -57,12 +58,12 @@ fun MainContentConnected() {
                     .padding(end = 8.dp) // Espace entre les colonnes
             ) {
                 // Partie 1
-                PartWithImageAndText(imageResId = imgCrayon, text = "Dernier exercice\n(Calcul pommes)",125)
+                PartWithImageAndText(imageResId = imgCrayon, text = "Dernier exercice\n(Calcul oiseaux)",125)
 
                 Spacer(modifier = Modifier.height(8.dp)) // Espacement entre Partie 1 et Partie 2
 
                 // Partie 2
-                PartWithImageAndText(imageResId = img_chap, text = "Cours associé",125)
+                PartWithImageAndText(imageResId = imgChap, text = "Cours associé",125)
             }
 
             // Partie 3

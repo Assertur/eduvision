@@ -35,17 +35,18 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.app.R
-import ui.colors.BackgroundColor
-import ui.colors.ItemColor
-import ui.colors.PrimaryColor
-import ui.colors.SecondaryColor
-import ui.colors.TextColor1
+import common.ui.colors.BackgroundColor
+import common.ui.colors.ItemColor
+import common.ui.colors.PrimaryColor
+import common.ui.colors.SecondaryColor
+import common.ui.colors.TextColor1
 
 
 @Composable
 fun MenuDeroulant(
     menuDeroulantViewModel: MenuDeroulantViewModel,
     onDismissRequest: () -> Unit,
+    connexionViewModel: ConnexionViewModel
 ) {
 
     if (menuDeroulantViewModel.isMenuExpanded.value) {
@@ -190,6 +191,9 @@ fun MenuDeroulant(
                                 modifier = Modifier
                                     .size(55.dp)
                                     .padding(10.dp)
+                                    .clickable() {
+                                        connexionViewModel.disconnect()
+                                    }
                             )
                         }
                     }
