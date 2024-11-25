@@ -50,7 +50,7 @@ fun MainContentConnected(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
             .background(BackgroundColor)
-            .padding(top = 30.dp, bottom = 100.dp)
+            .padding(top = 10.dp)
     ) {
         Row(
             modifier = Modifier
@@ -68,8 +68,9 @@ fun MainContentConnected(navController: NavHostController) {
                 PartWithImageAndText(
                     imageResId = imgCrayon,
                     text = "Dernier exercice\n(Calcul pommes)",
-                    125,
-                    navController
+                    115,
+                    navController,
+                    "exercice_exemple"
                 )
 
                 Spacer(modifier = Modifier.height(8.dp)) // Espacement entre Partie 1 et Partie 2
@@ -78,8 +79,9 @@ fun MainContentConnected(navController: NavHostController) {
                 PartWithImageAndText(
                     imageResId = img_chap,
                     text = "Cours associé",
-                    125,
-                    navController
+                    115,
+                    navController,
+                    "exercice_exemple"
                 )
             }
 
@@ -225,7 +227,8 @@ fun PartWithImageAndText(
     imageResId: Int,
     text: String,
     taille: Int,
-    navController: NavHostController
+    navController: NavHostController,
+    route: String
 ) {
     Column(
         modifier = Modifier
@@ -234,7 +237,7 @@ fun PartWithImageAndText(
             .clip(RoundedCornerShape(25.dp))
             .background(ItemColor)
             .clickable {
-                navController.navigate("exercice_exemple")
+                navController.navigate(route)
             },
         horizontalAlignment = Alignment.CenterHorizontally
 
@@ -245,14 +248,14 @@ fun PartWithImageAndText(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(taille.dp)
-                .padding(10.dp)
+                .padding(start = 10.dp, end = 10.dp, top = 10.dp)
                 .clip(RoundedCornerShape(10.dp))
                 .background(SecondaryColor)
         )
         Text(
             text = text,
             fontSize = 16.sp,
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(vertical = 10.dp),
             textAlign = TextAlign.Center
         )
     }

@@ -2,7 +2,6 @@ package common.bottomAppBar.menuDeroulant
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,20 +23,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.app.R
 import ui.colors.BackgroundColor
-import ui.colors.ItemColor
-import ui.colors.PrimaryColor
 import ui.colors.SecondaryColor
 import ui.colors.TextColor1
 
@@ -69,8 +63,15 @@ fun MenuDeroulant(
                     modifier = Modifier
                         .width(screenWidth * 0.60f)  // 60% de la largeur de l'écran
                         .height(screenHeight * 0.57f) // 57% de la hauteur de l'écran
-                        .padding(start = 5.dp, bottom = 115.dp) // Marge intérieure
-                        .clip(RoundedCornerShape(topStart = 10.dp, bottomStart = 10.dp, topEnd = 20.dp, bottomEnd = 20.dp))
+                        .padding(start = 5.dp, bottom = 10.dp) // Marge intérieure
+                        .clip(
+                            RoundedCornerShape(
+                                topStart = 10.dp,
+                                bottomStart = 10.dp,
+                                topEnd = 20.dp,
+                                bottomEnd = 20.dp
+                            )
+                        )
                         .background(BackgroundColor)      // Couleur de fond du menu déroulant
                 ) {
                     // Contenu du menu déroulant
@@ -78,8 +79,7 @@ fun MenuDeroulant(
                         modifier = Modifier
                             .fillMaxSize()
                             .align(Alignment.BottomStart)
-                            .padding(horizontal = 20.dp)
-                        ,
+                            .padding(horizontal = 20.dp),
                         verticalArrangement = Arrangement.SpaceBetween
                     ) {
                         Spacer(modifier = Modifier.weight(1.0f))
@@ -88,7 +88,8 @@ fun MenuDeroulant(
                                 /* Action pour l'élément 1 */
                                 onDismissRequest()
                             },
-                            modifier = Modifier.clip(RectangleShape)
+                            modifier = Modifier
+                                .clip(RectangleShape)
                                 .fillMaxWidth()
                                 .padding(vertical = 5.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -96,7 +97,8 @@ fun MenuDeroulant(
                             ),
                             contentPadding = PaddingValues(5.dp),
                         ) {
-                            Text("Matières",
+                            Text(
+                                "Matières",
                                 color = TextColor1,
                                 fontSize = 25.sp,
                             )
@@ -106,7 +108,8 @@ fun MenuDeroulant(
                                 /* Action pour l'élément 1 */
                                 onDismissRequest()
                             },
-                            modifier = Modifier.clip(RectangleShape)
+                            modifier = Modifier
+                                .clip(RectangleShape)
                                 .fillMaxWidth()
                                 .padding(vertical = 10.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -114,7 +117,8 @@ fun MenuDeroulant(
                             ),
                             contentPadding = PaddingValues(5.dp),
                         ) {
-                            Text("A faire",
+                            Text(
+                                "A faire",
                                 color = TextColor1,
                                 fontSize = 25.sp,
                             )
@@ -124,7 +128,8 @@ fun MenuDeroulant(
                                 /* Action pour l'élément 1 */
                                 onDismissRequest()
                             },
-                            modifier = Modifier.clip(RectangleShape)
+                            modifier = Modifier
+                                .clip(RectangleShape)
                                 .fillMaxWidth()
                                 .padding(vertical = 10.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -132,7 +137,8 @@ fun MenuDeroulant(
                             ),
                             contentPadding = PaddingValues(5.dp),
                         ) {
-                            Text("Groupes",
+                            Text(
+                                "Groupes",
                                 color = TextColor1,
                                 fontSize = 25.sp,
                             )
@@ -142,7 +148,8 @@ fun MenuDeroulant(
                                 /* Action pour l'élément 1 */
                                 onDismissRequest()
                             },
-                            modifier = Modifier.clip(RectangleShape)
+                            modifier = Modifier
+                                .clip(RectangleShape)
                                 .fillMaxWidth()
                                 .padding(vertical = 10.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -150,7 +157,8 @@ fun MenuDeroulant(
                             ),
                             contentPadding = PaddingValues(5.dp),
                         ) {
-                            Text("Historique",
+                            Text(
+                                "Historique",
                                 color = TextColor1,
                                 fontSize = 25.sp,
                             )
@@ -160,15 +168,18 @@ fun MenuDeroulant(
                                 /* Action pour l'élément 1 */
                                 onDismissRequest()
                             },
-                            modifier = Modifier.clip(RectangleShape)
-                                .fillMaxWidth().align(Alignment.Start)
+                            modifier = Modifier
+                                .clip(RectangleShape)
+                                .fillMaxWidth()
+                                .align(Alignment.Start)
                                 .padding(vertical = 10.dp),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = SecondaryColor // Couleur du fond du bouton
                             ),
                             contentPadding = PaddingValues(5.dp),
                         ) {
-                            Text("Profil",
+                            Text(
+                                "Profil",
                                 color = TextColor1,
                                 fontSize = 25.sp,
                             )
