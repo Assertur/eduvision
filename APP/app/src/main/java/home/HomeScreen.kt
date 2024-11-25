@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.app.R
 import androidx.navigation.NavHostController
 import common.bottomAppBar.menuDeroulant.MenuDeroulant
@@ -33,9 +34,8 @@ import common.ui.colors.SecondaryColor
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(navController: NavHostController, menuDeroulantViewModel: MenuDeroulantViewModel) {
+fun MainScreen(navController: NavHostController, menuDeroulantViewModel: MenuDeroulantViewModel,connexionViewModel: ConnexionViewModel) {
 
-    val connexionViewModel = ConnexionViewModel()
 
     if (connexionViewModel.isConnected.value) {
         Scaffold(
@@ -43,6 +43,7 @@ fun MainScreen(navController: NavHostController, menuDeroulantViewModel: MenuDer
         ) { // Contenu principal de l'écran
             MainContentConnected(navController)
             MenuDeroulant(
+                navController,
                 menuDeroulantViewModel,
                 onDismissRequest = { menuDeroulantViewModel.closeMenu() },
                 connexionViewModel
@@ -51,37 +52,6 @@ fun MainScreen(navController: NavHostController, menuDeroulantViewModel: MenuDer
         }
     } else {
         Scaffold(
-            bottomBar = {
-                BottomAppBar(
-                    modifier = Modifier.background(PrimaryColor),
-                    containerColor = PrimaryColor,
-                ){
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize(), // Prend toute la taille disponible
-                        horizontalAlignment = Alignment.CenterHorizontally, // Centre horizontalement
-                        verticalArrangement = Arrangement.Center // Centre verticalement le contenu
-                    )
-                    {
-                        Button(
-                            onClick = {},
-                            modifier = Modifier
-                                .clip(RectangleShape),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = PrimaryColor // Couleur du fond du bouton
-                            ),
-                            contentPadding = PaddingValues(5.dp),
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.logo),
-                                contentDescription = "home",
-                                modifier = Modifier.size(45.dp),
-                                colorFilter = ColorFilter.tint(Color.Black)
-                            )
-                        }
-                    }
-                }
-            }
         ) { // Contenu principal de l'écran
             MainContentConnexion(connexionViewModel)
         }

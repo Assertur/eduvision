@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
@@ -44,6 +45,8 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.example.app.R
 import common.connexion.ConnexionViewModel
+import common.connexion.fct.connexion
+import common.connexion.fct.inscription
 import common.ui.colors.BackgroundColor
 import common.ui.colors.SecondaryColor
 
@@ -51,7 +54,7 @@ import common.ui.colors.SecondaryColor
 @Composable
 fun MainContentConnexion(connexionViewModel: ConnexionViewModel) {
 
-    val errorShown by remember { mutableStateOf(false) }
+    var errorShown by remember { mutableStateOf(false) }
     var id by remember { mutableStateOf("") }
     var mdp by remember { mutableStateOf("") }
     var registerd by remember { mutableStateOf(true) }
@@ -71,21 +74,21 @@ fun MainContentConnexion(connexionViewModel: ConnexionViewModel) {
             )
 
             if (errorShown) {
-                Box(
-                    modifier = Modifier.padding()
-                ) {
+                Row (
+                    modifier = Modifier.padding(vertical = 20.dp)
+                ){
                     Image(
-                        painter = painterResource(id = R.drawable.attention),
-                        contentDescription = "Attention",
-                        modifier = Modifier.padding()
+                    painter = painterResource(id = R.drawable.attention),
+                    contentDescription = "Attention",
+                    modifier = Modifier.padding(20.dp)
+                        .size(60.dp)
                     )
                     Text(
                         "Votre identifiant ou mot de passe est incorrect",
                         color = Color.Red,
-                        fontSize = 22.sp,
-                        modifier = Modifier.padding()
-                    )
-                }
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(top = 20.dp)
+                    ) }
             }
 
             Box(
@@ -101,7 +104,7 @@ fun MainContentConnexion(connexionViewModel: ConnexionViewModel) {
                     onValueChange = { newText ->
                         id = newText // Mettre à jour la variable d'état
                     },
-                    placeholder = { Text("Nom Prenom") }, // Texte d'indication
+                    placeholder = { Text("Identifiant") }, // Texte d'indication
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 35.dp)
@@ -157,7 +160,12 @@ fun MainContentConnexion(connexionViewModel: ConnexionViewModel) {
             }
 
             Button(
-                onClick = {},
+                onClick = {
+                    if (connexion(id,mdp))
+                        connexionViewModel.connect("name")
+                    else
+                        errorShown = true
+                },
                 modifier = Modifier
                     .padding(start = 50.dp, top = 15.dp)
             ) {
@@ -169,7 +177,9 @@ fun MainContentConnexion(connexionViewModel: ConnexionViewModel) {
                 fontSize = 18.sp,
                 modifier = Modifier
                     .padding(start = 70.dp, top = 10.dp)
-                    .clickable() { registerd = false },
+                    .clickable() {
+                        registerd = false
+                    },
                 color = Color.Blue
             )
         }
@@ -273,7 +283,13 @@ fun MainContentConnexion(connexionViewModel: ConnexionViewModel) {
             }
 
             Button(
-                onClick = {},
+                onClick = {
+                    val inscription = inscription(firstName, lastName,password,accountType)
+                    if (inscription)
+                        registerd = true
+                    else
+                        errorShown = true
+                },
                 modifier = Modifier
                     .padding(start = 50.dp, top = 15.dp)
             ) {

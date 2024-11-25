@@ -30,6 +30,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import app.navigation.TRAVAUX_ROUTE
 import com.example.app.R
 import common.ui.colors.BackgroundColor
 import common.ui.colors.ItemColor
@@ -41,6 +43,7 @@ import common.connexion.ConnexionViewModel
 
 @Composable
 fun MenuDeroulant(
+    navController: NavController,
     menuDeroulantViewModel: MenuDeroulantViewModel,
     onDismissRequest: () -> Unit,
     connexionViewModel: ConnexionViewModel
@@ -90,6 +93,7 @@ fun MenuDeroulant(
                         Button(
                             onClick = {
                                 /* Action pour l'élément 1 */
+                                navController.navigate(TRAVAUX_ROUTE)
                                 onDismissRequest()
                             },
                             modifier = Modifier
@@ -110,6 +114,7 @@ fun MenuDeroulant(
                         Button(
                             onClick = {
                                 /* Action pour l'élément 1 */
+                                navController.navigate(TRAVAUX_ROUTE)
                                 onDismissRequest()
                             },
                             modifier = Modifier
@@ -130,6 +135,7 @@ fun MenuDeroulant(
                         Button(
                             onClick = {
                                 /* Action pour l'élément 1 */
+                                navController.navigate(TRAVAUX_ROUTE)
                                 onDismissRequest()
                             },
                             modifier = Modifier
@@ -150,6 +156,7 @@ fun MenuDeroulant(
                         Button(
                             onClick = {
                                 /* Action pour l'élément 1 */
+                                navController.navigate(TRAVAUX_ROUTE)
                                 onDismissRequest()
                             },
                             modifier = Modifier
@@ -170,6 +177,7 @@ fun MenuDeroulant(
                         Button(
                             onClick = {
                                 /* Action pour l'élément 1 */
+                                navController.navigate(TRAVAUX_ROUTE)
                                 onDismissRequest()
                             },
                             modifier = Modifier
@@ -197,6 +205,10 @@ fun MenuDeroulant(
                                 modifier = Modifier
                                     .size(55.dp)
                                     .padding(10.dp)
+                                    .clickable(){
+                                        navController.navigate(TRAVAUX_ROUTE)
+                                        onDismissRequest()
+                                    }
                             )
                             Image(
                                 painter = painterResource(id = R.drawable.deconnexion),

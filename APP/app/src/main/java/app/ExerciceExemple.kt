@@ -3,12 +3,15 @@ package app
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import common.ExerciceLayout
+import common.bottomAppBar.menuDeroulant.MenuDeroulant
 import common.bottomAppBar.menuDeroulant.MenuDeroulantViewModel
+import common.connexion.ConnexionViewModel
 
 @Composable
 fun ExerciceExemple(
     navController: NavHostController,
-    menuDeroulantViewModel: MenuDeroulantViewModel
+    menuDeroulantViewModel: MenuDeroulantViewModel,
+    connexionViewModel: ConnexionViewModel
 ) {
     ExerciceLayout(
         hasResults = true, // Passe true si des résultats sont disponibles
@@ -19,5 +22,11 @@ fun ExerciceExemple(
         onSeeMoreClicked = {
             // Action pour "Voir plus"
         }
+    )
+    MenuDeroulant(
+        navController,
+        menuDeroulantViewModel,
+        onDismissRequest = { menuDeroulantViewModel.closeMenu() },
+        connexionViewModel
     )
 }

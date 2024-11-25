@@ -30,6 +30,8 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import app.navigation.HOME_ROUTE
 import com.example.app.R
 import common.bottomAppBar.menuDeroulant.MenuDeroulantViewModel
 import common.ui.colors.PrimaryColor
@@ -84,7 +86,8 @@ fun MyThreeLineButton(onClick: () -> Unit) {
 
 @Composable
 fun MyBottomAppBar(
-    menuDeroulantViewModel: MenuDeroulantViewModel?
+    menuDeroulantViewModel: MenuDeroulantViewModel?,
+    navController: NavController
 ) {
     BottomAppBar(
         modifier = Modifier.background(PrimaryColor),
@@ -97,7 +100,10 @@ fun MyBottomAppBar(
             MyThreeLineButton(onClick = {
                 menuDeroulantViewModel?.toggleMenu()
             })
-            Button(onClick = {},
+            Button(
+                onClick = {
+                navController.navigate(HOME_ROUTE)
+            },
                 modifier = Modifier.clip(RectangleShape),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = PrimaryColor // Couleur du fond du bouton
@@ -120,10 +126,4 @@ fun MyBottomAppBar(
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun BottomAppBarPreview() {
-    MyBottomAppBar(null)
 }
