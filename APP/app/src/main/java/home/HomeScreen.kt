@@ -13,12 +13,10 @@ import ui.colors.SecondaryColor
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(navController: NavHostController) {
-
-    var menuDeroulantViewModel = MenuDeroulantViewModel()
+fun MainScreen(navController: NavHostController, menuDeroulantViewModel: MenuDeroulantViewModel) {
 
     Scaffold(
-        bottomBar = { MyBottomAppBar(menuDeroulantViewModel) },
+//        bottomBar = { MyBottomAppBar(menuDeroulantViewModel) },
         modifier = Modifier.background(SecondaryColor)
     ) { // Contenu principal de l'écran
         MainContentConnected(navController = navController)

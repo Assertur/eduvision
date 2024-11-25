@@ -10,14 +10,13 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import common.bottomAppBar.menuDeroulant.MenuDeroulant
+import common.bottomAppBar.menuDeroulant.MenuDeroulantViewModel
 
 @Composable
-fun ExerciceExemple() {
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text("Nouvelle Page") })
-        }
-    ) {
+fun ExerciceExemple(navController: NavHostController, menuDeroulantViewModel: MenuDeroulantViewModel) {
+    Scaffold {
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -29,5 +28,7 @@ fun ExerciceExemple() {
                 style = MaterialTheme.typography.h5
             )
         }
+
+        MenuDeroulant(menuDeroulantViewModel, onDismissRequest = { menuDeroulantViewModel.closeMenu() })
     }
 }
