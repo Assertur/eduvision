@@ -29,9 +29,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.app.R
-import ui.colors.ItemColor
-import ui.colors.PrimaryColor
-import ui.colors.SecondaryColor
+import common.ui.colors.ItemColor
+import common.ui.colors.PrimaryColor
+import common.ui.colors.SecondaryColor
 
 @Composable
 fun ExerciceLayout(
