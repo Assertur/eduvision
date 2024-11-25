@@ -29,10 +29,16 @@ fun SetupNavGraph(navController: NavHostController) {
             modifier = Modifier.padding(it) // Gère le padding pour ne pas recouvrir la BottomAppBar
         ) {
             composable(route = HOME_ROUTE) {
-                MainScreen(navController = navController, menuDeroulantViewModel = menuDeroulantViewModel)
+                MainScreen(
+                    navController = navController,
+                    menuDeroulantViewModel = menuDeroulantViewModel
+                )
             }
             composable(route = EXERCICE_EXEMPLE_ROUTE) {
-                ExerciceExemple(navController = navController, menuDeroulantViewModel = menuDeroulantViewModel)
+                ExerciceExemple(
+                    navController = navController,
+                    menuDeroulantViewModel = menuDeroulantViewModel
+                )
             }
         }
     }

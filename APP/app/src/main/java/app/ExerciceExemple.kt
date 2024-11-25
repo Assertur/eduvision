@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,7 +14,10 @@ import common.bottomAppBar.menuDeroulant.MenuDeroulant
 import common.bottomAppBar.menuDeroulant.MenuDeroulantViewModel
 
 @Composable
-fun ExerciceExemple(navController: NavHostController, menuDeroulantViewModel: MenuDeroulantViewModel) {
+fun ExerciceExemple(
+    navController: NavHostController,
+    menuDeroulantViewModel: MenuDeroulantViewModel
+) {
     Scaffold {
         Box(
             modifier = Modifier
@@ -29,6 +31,8 @@ fun ExerciceExemple(navController: NavHostController, menuDeroulantViewModel: Me
             )
         }
 
-        MenuDeroulant(menuDeroulantViewModel, onDismissRequest = { menuDeroulantViewModel.closeMenu() })
+        MenuDeroulant(
+            menuDeroulantViewModel,
+            onDismissRequest = { menuDeroulantViewModel.closeMenu() })
     }
 }

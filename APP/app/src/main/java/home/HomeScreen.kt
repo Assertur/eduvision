@@ -6,7 +6,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import common.bottomAppBar.MyBottomAppBar
 import common.bottomAppBar.menuDeroulant.MenuDeroulant
 import common.bottomAppBar.menuDeroulant.MenuDeroulantViewModel
 import ui.colors.SecondaryColor
