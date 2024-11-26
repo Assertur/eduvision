@@ -1,5 +1,6 @@
 package app.navigation
 
+import ExerciceExemple
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -8,7 +9,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import app.ExerciceExemple
 import common.TravauxPage
 import common.bottomAppBar.MyBottomAppBar
 import common.bottomAppBar.menuDeroulant.MenuDeroulantViewModel
@@ -17,7 +17,7 @@ import home.MainScreen
 
 const val HOME_ROUTE = "home"
 const val EXERCICE_EXEMPLE_ROUTE = "exercice_exemple"
-const val TRAVAUX_ROUTE = "exercice_exemple"
+const val TRAVAUX_ROUTE = "en_travaux"
 
 /**
  * Fonction qui permet de gérer les routes de l'application.
@@ -28,7 +28,7 @@ fun SetupNavGraph(navController: NavHostController) {
 
     val connexionViewModel: ConnexionViewModel = viewModel()
 
-    Scaffold(bottomBar = { MyBottomAppBar(menuDeroulantViewModel,navController) }) {
+    Scaffold(bottomBar = { MyBottomAppBar(menuDeroulantViewModel, navController) }) {
         NavHost(
             navController = navController,
             startDestination = HOME_ROUTE,

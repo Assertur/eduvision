@@ -107,4 +107,10 @@ dependencies {
     androidTestImplementation(libs.androidx.navigation.testing)
 
     implementation(libs.androidx.material.icons.extended)
+
+    // Pour faire des appels à l'API
+    implementation(libs.retrofit) // Retrofit
+    implementation(libs.converter.gson) // Convertisseur JSON avec Gson
+    implementation(libs.kotlinx.coroutines.android) // Coroutines
+
 }

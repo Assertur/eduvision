@@ -18,6 +18,7 @@ import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,6 +29,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import app.Game
 import com.example.app.R
 import common.ui.colors.ItemColor
 import common.ui.colors.PrimaryColor
@@ -38,8 +41,18 @@ fun ExerciceLayout(
     hasResults: Boolean,
     progress: Float = 0f, // Par défaut 0, utilisé seulement si hasResults = true
     onStartClicked: () -> Unit, // Action pour "Démarrer l'exercice"
-    onSeeMoreClicked: () -> Unit // Action pour "Voir plus"
+    onSeeMoreClicked: () -> Unit, // Action pour "Voir plus"
+    navController: NavController,
+    game: Game
 ) {
+    LaunchedEffect(game) {
+        val shouldNavigate = game.name == "" || game.description == ""
+        if (shouldNavigate && navController.currentBackStackEntry?.destination?.route != "en_travaux") {
+            navController.navigate("en_travaux") // Exercice non dispo
+        }
+
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -66,7 +79,7 @@ fun ExerciceLayout(
                         .padding(end = 8.dp)
                 )
                 Text(
-                    text = "Nom de l'exercice",
+                    text = game.name,
                     style = MaterialTheme.typography.h5,
                     textAlign = TextAlign.Center
                 )
@@ -77,7 +90,7 @@ fun ExerciceLayout(
 
         // Section Description
         Text(
-            text = "Une petite description de l'exercice pour expliquer ce qu'il contient.",
+            text = game.description,
             style = MaterialTheme.typography.body1.copy(
                 color = Color.Gray,
                 fontSize = 14.sp
