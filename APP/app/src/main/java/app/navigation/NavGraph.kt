@@ -16,7 +16,8 @@ import common.connexion.ConnexionViewModel
 import home.MainScreen
 
 const val HOME_ROUTE = "home"
-const val EXERCICE_EXEMPLE_ROUTE = "exercice_exemple"
+const val EXERCICE_EXEMPLE_ROUTE_1 = "exercice_exemple_1"
+const val EXERCICE_EXEMPLE_ROUTE_2 = "exercice_exemple_2"
 const val TRAVAUX_ROUTE = "en_travaux"
 
 /**
@@ -41,11 +42,20 @@ fun SetupNavGraph(navController: NavHostController) {
                     connexionViewModel
                 )
             }
-            composable(route = EXERCICE_EXEMPLE_ROUTE) {
+            composable(route = EXERCICE_EXEMPLE_ROUTE_1) {
                 ExerciceExemple(
                     navController = navController,
                     menuDeroulantViewModel = menuDeroulantViewModel,
-                    connexionViewModel
+                    connexionViewModel,
+                    1
+                )
+            }
+            composable(route = EXERCICE_EXEMPLE_ROUTE_2) {
+                ExerciceExemple(
+                    navController = navController,
+                    menuDeroulantViewModel = menuDeroulantViewModel,
+                    connexionViewModel,
+                    2
                 )
             }
             composable(route = TRAVAUX_ROUTE) {

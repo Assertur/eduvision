@@ -33,6 +33,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import app.navigation.EXERCICE_EXEMPLE_ROUTE_1
+import app.navigation.EXERCICE_EXEMPLE_ROUTE_2
+import app.navigation.TRAVAUX_ROUTE
 import com.example.app.R
 import common.ui.colors.BackgroundColor
 import common.ui.colors.ItemColor
@@ -72,7 +75,7 @@ fun MainContentConnected(navController: NavHostController) {
                     text = "Dernier exercice\n(Calcul oiseaux)",
                     115,
                     navController,
-                    "exercice_exemple"
+                    EXERCICE_EXEMPLE_ROUTE_1
                 )
 
                 Spacer(modifier = Modifier.height(8.dp)) // Espacement entre Partie 1 et Partie 2
@@ -83,7 +86,7 @@ fun MainContentConnected(navController: NavHostController) {
                     text = "Cours associé",
                     115,
                     navController,
-                    "en_travaux"
+                    TRAVAUX_ROUTE
                 )
             }
 
@@ -105,12 +108,14 @@ fun MainContentConnected(navController: NavHostController) {
 
                 // Afficher chaque élément
                 items.forEach { item ->
-                    ProgressItemRow(item, 3)
+                    ProgressItemRow(item, 3, navController, EXERCICE_EXEMPLE_ROUTE_2)
                     Spacer(modifier = Modifier.height(8.dp)) // Espacement entre chaque élément
                 }
 
                 Button(
-                    onClick = {},
+                    onClick = {
+                        navController.navigate(TRAVAUX_ROUTE)
+                    },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = PrimaryColor // Couleur du fond du bouton
                     ),
@@ -148,12 +153,14 @@ fun MainContentConnected(navController: NavHostController) {
 
             // Afficher chaque élément
             items.forEach { item ->
-                ProgressItemRow(item, 4)
+                ProgressItemRow(item, 4, navController, EXERCICE_EXEMPLE_ROUTE_1)
                 Spacer(modifier = Modifier.height(8.dp)) // Espacement entre chaque élément
             }
 
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate(TRAVAUX_ROUTE)
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = PrimaryColor // Couleur du fond du bouton
                 ),
@@ -172,14 +179,22 @@ data class ProgressItem(val imageResId: Int, val text: String, val progress: Flo
 
 // Composable pour afficher un élément avec image, texte, barre de progression et pourcentage
 @Composable
-fun ProgressItemRow(item: ProgressItem, number: Int) {
+fun ProgressItemRow(
+    item: ProgressItem,
+    number: Int,
+    navController: NavHostController,
+    route: String
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.clickable() {
+                navController.navigate(route)
+            }
         ) {
             // Image à gauche
             Image(

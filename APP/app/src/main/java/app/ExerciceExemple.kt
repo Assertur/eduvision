@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
 import app.Game
+import app.navigation.TRAVAUX_ROUTE
 import common.ExerciceLayout
 import common.bottomAppBar.menuDeroulant.MenuDeroulant
 import common.bottomAppBar.menuDeroulant.MenuDeroulantViewModel
@@ -19,12 +20,15 @@ import java.io.IOException
 fun ExerciceExemple(
     navController: NavHostController,
     menuDeroulantViewModel: MenuDeroulantViewModel,
-    connexionViewModel: ConnexionViewModel
+    connexionViewModel: ConnexionViewModel,
+    exo : Int
 ) {
     // État pour stocker la réponse
     var game by remember { mutableStateOf<Game?>(null) }
     var isLoading by remember { mutableStateOf(true) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+
+    var text = "Aidez la famille des oiseaux à se nourrir et à partager leur nourriture !"
 
     // Charger les données depuis l'API
     LaunchedEffect(Unit) {
@@ -32,7 +36,11 @@ fun ExerciceExemple(
             Log.d("API_CALL", "Fetching game data from 192.168.2.89:8080...")
             isLoading = true
 //            game = ApiService.gameApi.getGameById(1) // Appel à l'API
-            game = Game(id = 1, name = "Calcul oiseaux", description = "ça marche !!!!!!!")
+            if (exo == 1) {
+                game = Game(id = 1, name = "Calcul oiseaux", description = text)
+            }else if (exo==2){
+                game = Game(id = 1, name = "Calcul pommmes", description = text)
+            }
             Log.d("API_CALL", "Game fetched: $game")
         } catch (e: HttpException) {
             errorMessage = "Erreur serveur : ${e.message()}"
@@ -59,18 +67,33 @@ fun ExerciceExemple(
 
         game != null -> {
             // Afficher le composable principal avec les données récupérées
-            ExerciceLayout(
-                hasResults = true,
-                progress = 0.75f,
-                onStartClicked = {
-                    // Action pour "Démarrer l'exercice"
-                },
-                onSeeMoreClicked = {
-                    // Action pour "Voir plus"
-                },
-                navController = navController,
-                game = game!! // Passe l'objet récupéré
-            )
+
+            if (exo == 1){
+                ExerciceLayout(
+                    hasResults = true,
+                    progress = 0.75f,
+                    onStartClicked = {
+                        navController.navigate(TRAVAUX_ROUTE)
+                    },
+                    onSeeMoreClicked = {
+                        navController.navigate(TRAVAUX_ROUTE)
+                    },
+                    navController = navController,
+                    game = game!! // Passe l'objet récupéré
+                )
+            }else if (exo == 2){
+                ExerciceLayout(
+                    hasResults = false,
+                    onStartClicked = {
+                        navController.navigate(TRAVAUX_ROUTE)
+                    },
+                    onSeeMoreClicked = {
+                        navController.navigate(TRAVAUX_ROUTE)
+                    },
+                    navController = navController,
+                    game = game!! // Passe l'objet récupéré
+                )
+            }
         }
 
         else -> {
