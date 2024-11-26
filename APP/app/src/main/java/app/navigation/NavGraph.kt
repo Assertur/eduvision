@@ -17,6 +17,7 @@ import home.MainScreen
 
 const val HOME_ROUTE = "home"
 const val EXERCICE_EXEMPLE_ROUTE = "exercice_exemple"
+const val EXERCICE_EXEMPLE_SANS_HISTORIQUE = "exercice_exemple_sans_historique"
 const val TRAVAUX_ROUTE = "en_travaux"
 
 /**
@@ -45,7 +46,8 @@ fun SetupNavGraph(navController: NavHostController) {
                 ExerciceExemple(
                     navController = navController,
                     menuDeroulantViewModel = menuDeroulantViewModel,
-                    connexionViewModel
+                    connexionViewModel,
+                    1
                 )
             }
             composable(route = TRAVAUX_ROUTE) {
@@ -53,6 +55,14 @@ fun SetupNavGraph(navController: NavHostController) {
                     navController = navController,
                     menuDeroulantViewModel,
                     connexionViewModel
+                )
+            }
+            composable(route = EXERCICE_EXEMPLE_SANS_HISTORIQUE) {
+                ExerciceExemple(
+                    navController = navController,
+                    menuDeroulantViewModel = menuDeroulantViewModel,
+                    connexionViewModel,
+                    2
                 )
             }
         }

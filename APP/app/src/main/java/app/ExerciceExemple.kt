@@ -19,7 +19,8 @@ import java.io.IOException
 fun ExerciceExemple(
     navController: NavHostController,
     menuDeroulantViewModel: MenuDeroulantViewModel,
-    connexionViewModel: ConnexionViewModel
+    connexionViewModel: ConnexionViewModel,
+    idExercice: Int
 ) {
     // État pour stocker la réponse
     var game by remember { mutableStateOf<Game?>(null) }
@@ -31,8 +32,12 @@ fun ExerciceExemple(
         try {
             Log.d("API_CALL", "Fetching game data from 192.168.2.89:8080...")
             isLoading = true
-//            game = ApiService.gameApi.getGameById(1) // Appel à l'API
-            game = Game(id = 1, name = "Calcul oiseaux", description = "ça marche !!!!!!!")
+//            game = ApiService.gameApi.getGameById(idExercice) // Appel à l'API
+            game = Game(
+                id = 1,
+                name = "Calcul oiseaux",
+                description = "Exercice de mathématiques permettant d'apprendre à calculer rapidement. Ce jeu montre des oiseaux et il faut calculer le nombre d'oiseaux de chaque espèces présents."
+            )
             Log.d("API_CALL", "Game fetched: $game")
         } catch (e: HttpException) {
             errorMessage = "Erreur serveur : ${e.message()}"
@@ -58,9 +63,13 @@ fun ExerciceExemple(
         }
 
         game != null -> {
+            var hasResults = true
+            if (idExercice == 2) {
+                hasResults = false
+            }
             // Afficher le composable principal avec les données récupérées
             ExerciceLayout(
-                hasResults = true,
+                hasResults = hasResults,
                 progress = 0.75f,
                 onStartClicked = {
                     // Action pour "Démarrer l'exercice"

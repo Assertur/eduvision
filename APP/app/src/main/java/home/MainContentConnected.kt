@@ -83,7 +83,7 @@ fun MainContentConnected(navController: NavHostController) {
                     text = "Cours associé",
                     115,
                     navController,
-                    "en_travaux"
+                    "exercice_exemple_sans_historique"
                 )
             }
 
